@@ -26,6 +26,31 @@
     text-decoration: none;
 }
 
+.changeText {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 3px 5px;
+    text-decoration: none;
+    position: relative;
+    top: -10px;
+    right: -5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in;
+}
+
+.changeText:hover {
+    opacity: 0.7;
+}
+
 .InfoText {
     
     font-size: 21px;
