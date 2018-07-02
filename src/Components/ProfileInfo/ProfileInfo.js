@@ -1,8 +1,9 @@
 import React from 'react';
+import css from './ProfileInfo.css';
 
 const ProfileInfo = (props) => {
     return (
-        <div>ProfileInfo</div>
+        <div className={css.ProfileInfo}>ProfileInfo</div>
     )
 }
 
