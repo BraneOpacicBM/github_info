@@ -1,11 +1,17 @@
 .ProfileInfo {
-    border: 2px solid red;
     box-sizing: border-box;
 }
 
 .HeadingHolder {
     text-align: center;
-    border: 2px solid gold;
+    background: rgba(76, 169, 207, 0.9);
+}
+
+.HeadingText {
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-bottom: 2px solid rgba(65,105,225, 0.5);
 }
 
 .imgHolder {
@@ -14,7 +20,7 @@
 
 .GitHubImage {
     display: inline-block;
-    border: 1px solid gold;
+    max-width: 200px;
     border-radius: 50%;
     
 }
@@ -23,4 +29,30 @@
     display: block;
     width: 100%;
     border-radius: 50%;
+    border: 2px solid #c0c0d9;
+    -webkit-box-shadow: 2px 2px 44px 5px rgba(60,65,158,1);
+    box-shadow: 2px 2px 44px 5px rgb(9, 12, 70);
+    animation: bounce 1.5s infinite;
 }
+
+.GitProfileInfo {
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+@keyframes bounce {
+    
+    0% {
+      transform: translate(0, 0);
+    }
+    
+    50% {
+        transform: translate(0, 8px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+  }

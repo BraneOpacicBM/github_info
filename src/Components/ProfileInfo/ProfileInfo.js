@@ -3,11 +3,11 @@ import css from './ProfileInfo.css';
 import InfoRow from '../InfoRow/InfoRow';
 
 const ProfileInfo = (props) => {
-    const {info} = props;
-    const informationParams = ['name', 'blog', 'company', 'location'];
+    const { info } = props;
+    const infoParams = ['name', 'blog', 'company', 'location'];
 
-    informationParams.map((infoParam, i) => {
-        return <InfoRow type={infoParam} info={info} key={i}/>
+    const infoRows = infoParams.map((param, i) => {
+        return <InfoRow key={i} type={param} info={info} />
     })
 
     return (
@@ -17,12 +17,12 @@ const ProfileInfo = (props) => {
             </div>
             <div className={css.imgHolder}>
                 <div className={css.GitHubImage}>
-                    <img className={css.ImgAvatar} src={info.avatar_url} alt="Profile avatar"/>
+                    <img className={css.ImgAvatar} src={info.avatar_url} alt="Profile avatar" />
                 </div>
             </div>
             <div className={css.GitHubInfo}>
                 <div className={css.GitProfileInfo}>
-                    {informationParams}
+                    {infoRows}
                 </div>
             </div>
         </div>

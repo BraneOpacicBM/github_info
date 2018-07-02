@@ -1,4 +1,9 @@
 .App {
   text-align: center;
+  background: 	rgba(230,230,250);
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
 }
 
