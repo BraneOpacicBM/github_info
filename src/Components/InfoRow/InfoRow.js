@@ -1,49 +1,95 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import css from './InfoRow.css';
+import { getUserFeedback } from '../../store/actions/actions';
 
-const InfoRow = (props) => {
+class InfoRow extends Component {
 
-    console.log("From info row")
-    console.log(props.info.login);
+    changeValueHandler = (type) => {
+        this.props.getUserFeedback(type);
+    }
 
+    render() {
 
-    switch (props.type) {
-        case 'name':
-            return <div className={css.InfoRow}>
-                <span className={css.InfoLabel}>Name</span>
-                <div className={css.rightSection}>
-                    <span className={css.InfoText}>{props.info.login}</span>
-                    <span className={css.changeText}>+</span>
+        let nameGroup = <div className={css.nameGroup}>
+            <span className={css.InfoText}>{this.props.info.login}</span>
+            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
+        </div>;
+        let blogGroup = <div className={css.blogGroup}>
+            <span className={css.InfoText}>{this.props.info.blog}</span>
+            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
+        </div>;
+        let companyGroup = <div className={css.companyGroup}>
+            <span className={css.InfoText}>{this.props.info.company}</span>
+            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
+        </div>;
+        let locationGroup = <div className={css.locationGroup}>
+            <span className={css.InfoText}>{this.props.info.location}</span>
+            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
+        </div>;
+
+        if (this.props.changeName) {
+            nameGroup = <input type="text" placeholder={this.props.info.login}/>;
+        }
+        if (this.props.changeBlog) {
+            blogGroup = <input type="text" placeholder={this.props.info.blog}/>;
+        }
+        if (this.props.changeCompany) {
+            companyGroup = <input type="text" placeholder={this.props.info.company}/>;
+        }
+        if (this.props.changeLocation) {
+            locationGroup = <input type="text" placeholder={this.props.info.location}/>;
+        }
+
+        switch (this.props.type) {
+            case 'name':
+                return <div className={css.InfoRow}>
+                    <span className={css.InfoLabel}>Name</span>
+                    <div className={css.rightSection}>
+                        {nameGroup}
+                    </div>
                 </div>
-            </div>
-        case 'blog':
-            return <div className={css.InfoRow}>
-                <span className={css.InfoLabel}>Blog</span>
-                <div className={css.rightSection}>
-                    <span className={css.InfoText}>{props.info.blog}</span>
-                    <span className={css.changeText}>+</span>
+            case 'blog':
+                return <div className={css.InfoRow}>
+                    <span className={css.InfoLabel}>Blog</span>
+                    <div className={css.rightSection}>
+                        {blogGroup}
+                    </div>
                 </div>
-            </div>
-        case 'company':
-            return <div className={css.InfoRow}>
-                <span className={css.InfoLabel}>Company</span>
-                <div className={css.rightSection}>
-                    <span className={css.InfoText}>{props.info.company}</span>
-                    <span className={css.changeText}>+</span>
+            case 'company':
+                return <div className={css.InfoRow}>
+                    <span className={css.InfoLabel}>Company</span>
+                    <div className={css.rightSection}>
+                        {companyGroup}
+                    </div>
                 </div>
-            </div>
-        case 'location':
-            return <div className={css.InfoRow}>
-                <span className={css.InfoLabel}>Location</span>
-                <div className={css.rightSection}>
-                    <span className={css.InfoText}>{props.info.location}</span>
-                    <span className={css.changeText}>+</span>
-                </div>
+            case 'location':
+                return <div className={css.InfoRow}>
+                    <span className={css.InfoLabel}>Location</span>
+                    <div className={css.rightSection}>
+                        {locationGroup}
+                    </div>
 
-            </div>
-        default:
-            return null;
+                </div>
+            default:
+                return null;
+        }
     }
 }
 
-export default InfoRow;
+const mapStateToProps = state => {
+    return {
+        changeName: state.changeName,
+        changeLocation: state.changeLocation,
+        changeBlog: state.changeBlog,
+        changeCompany: state.changeCompany
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getUserFeedback: (type) => dispatch(getUserFeedback({ type: type }))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InfoRow);

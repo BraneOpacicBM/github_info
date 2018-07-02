@@ -5,6 +5,13 @@ const setGitHubInfo = (info) => {
     }
 }
 
+export const getUserFeedback = (param) => {
+    return {
+        type: 'GET_USER_FEEDBACK',
+        param: param
+    }
+}
+
 export const getGitHubInfo = (url) => {
     return dispatch => {
         fetch(url)

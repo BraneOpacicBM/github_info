@@ -1,16 +1,59 @@
 const initialState = {
-    info: null
+    info: null,
+    changeName: false,
+    changeLocation: false,
+    changeBlog: false,
+    changeCompany: false
 }
 
 const reducer = (state = initialState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'SET_GITHUB_INFO':
             return {
                 ...state,
                 info: action.info
             }
+        case 'GET_USER_FEEDBACK':
+            switch (action.param.type) {
+                case 'name':
+                    return {
+                        ...state,
+                        changeName: true,
+                        changeLocation: false,
+                        changeBlog: false,
+                        changeCompany: false
+                    }
+                case 'location':
+                    return {
+                        ...state,
+                        changeName: false,
+                        changeLocation: true,
+                        changeBlog: false,
+                        changeCompany: false
+                    }
+                case 'blog':
+                    return {
+                        ...state,
+                        changeName: false,
+                        changeLocation: false,
+                        changeBlog: true,
+                        changeCompany: false
+                    }
+                case 'company':
+                    return {
+                        ...state,
+                        changeName: false,
+                        changeLocation: false,
+                        changeBlog: false,
+                        changeCompany: true
+                    }
+                default:
+                    return {
+                        ...state
+                    }
+            }
         default:
-        return state;
+            return state;
     }
 }
 
