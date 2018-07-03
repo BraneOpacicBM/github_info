@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getGitHubInfo } from "../../store/actions/actions";
 import ProfileInfo from "../../Components/ProfileInfo/ProfileInfo";
+import Spinner from "../../Components/Spinner/Spinner";
 
 class ShowInfo extends Component {
    
@@ -27,7 +28,7 @@ state = {
         console.log(githubUser.info)
         return <ProfileInfo info={githubUser.info} />
     } else {
-        return <div>Spinner</div>;
+        return <Spinner />;
     }
   }
 }
