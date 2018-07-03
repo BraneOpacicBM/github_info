@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import css from './InfoRow.css';
-import { getUserFeedback } from '../../store/actions/actions';
+import { getUserFeedback, changeUserFeedback, closeUserFeedback } from '../../store/actions/actions';
 
 class InfoRow extends Component {
 
@@ -9,10 +9,20 @@ class InfoRow extends Component {
         this.props.getUserFeedback(type);
     }
 
-    render() {
+    inputValueHandler = (e, type) => {
+        if(e.key === "Enter") {
+            if(e.target.value.trim() !== "") {
+                this.props.changeUserFeedback(e.target.value, type);
+                this.props.closeUserFeedback();
+            }
+        }
+    }
 
+    render() {
+        console.log("INFO")
+        console.log(this.props.info)
         let nameGroup = <div className={css.nameGroup}>
-            <span className={css.InfoText}>{this.props.info.login}</span>
+            <span className={css.InfoText}>{this.props.info.name}</span>
             <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
         </div>;
         let blogGroup = <div className={css.blogGroup}>
@@ -29,16 +39,16 @@ class InfoRow extends Component {
         </div>;
 
         if (this.props.changeName) {
-            nameGroup = <input type="text" placeholder={this.props.info.login}/>;
+            nameGroup = <input type="text" placeholder={this.props.info.login} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)}/>;
         }
         if (this.props.changeBlog) {
-            blogGroup = <input type="text" placeholder={this.props.info.blog}/>;
+            blogGroup = <input type="text" placeholder={this.props.info.blog} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)}/>;
         }
         if (this.props.changeCompany) {
-            companyGroup = <input type="text" placeholder={this.props.info.company}/>;
+            companyGroup = <input type="text" placeholder={this.props.info.company} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)}/>;
         }
         if (this.props.changeLocation) {
-            locationGroup = <input type="text" placeholder={this.props.info.location}/>;
+            locationGroup = <input type="text" placeholder={this.props.info.location} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)}/>;
         }
 
         switch (this.props.type) {
@@ -82,13 +92,16 @@ const mapStateToProps = state => {
         changeName: state.changeName,
         changeLocation: state.changeLocation,
         changeBlog: state.changeBlog,
-        changeCompany: state.changeCompany
+        changeCompany: state.changeCompany,
+        info: state.info
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUserFeedback: (type) => dispatch(getUserFeedback({ type: type }))
+        getUserFeedback: (type) => dispatch(getUserFeedback({ type: type })),
+        closeUserFeedback: () => dispatch(closeUserFeedback()),
+        changeUserFeedback: (value, type) => dispatch(changeUserFeedback({value: value, type: type}))
     }
 }
 

@@ -52,6 +52,23 @@ const reducer = (state = initialState, action) => {
                         ...state
                     }
             }
+        case 'CLOSE_USER_FEEDBACK':
+            return {
+                ...state,
+                changeBlog: false,
+                changeName: false,
+                changeCompany: false,
+                changeLocation: false
+            }
+        case 'UPDATE_STATE_WITH_FEEDBACK':
+            return {
+                ...state,
+                info: {
+                    ...state.info,
+                    [action.feedType]: action.value
+                }
+
+            }
         default:
             return state;
     }
