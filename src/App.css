@@ -1,10 +1,20 @@
 .App {
   text-align: center;
-  background: 	rgba(230,230,250);
 }
 
 * {
   font-family: 'Roboto', sans-serif;
+  outline: none;
+}
+
+.HeadingHolder {
+  text-align: center;
+  background: rgba(76, 169, 207, 0.9);
+  padding: 10px;
+}
+
+.HeadingText {
+  margin: 0;
 }
 
 a {

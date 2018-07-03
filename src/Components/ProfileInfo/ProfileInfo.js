@@ -13,13 +13,6 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={css.ProfileInfo}>
-            <div className={css.HeadingHolder}>
-                <h2 className={css.HeadingText}>GitHub info</h2>
-                <div className={css.NavBar}>
-                    <NavLink to="/" exact>Home</NavLink>
-                    <NavLink to="/repos" exact>Repos</NavLink>
-                </div>
-            </div>
             <div className={css.imgHolder}>
                 <div className={css.GitHubImage}>
                     <img className={css.ImgAvatar} src={info.avatar_url} alt="Profile avatar" />

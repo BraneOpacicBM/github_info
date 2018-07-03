@@ -1,3 +1,5 @@
+const url = "https://api.github.com/user?access_token=dd356c3725013f73396189e0780d9228ee2b5241";
+const reposUrl = "https://api.github.com/users/BraneOpacic/repos";
 const setGitHubInfo = (info) => {
     return {
         type: 'SET_GITHUB_INFO',
@@ -26,10 +28,25 @@ const updateStateWithFeedback = (feedType, value) => {
     }
 }
 
+const handleRepos = (repos) => {
+    return {
+        type: 'HANDLE_REPOS',
+        repos: repos
+    }
+}
+export const getGitRepos = () => {
+    return dispatch => {
+        fetch(reposUrl)
+            .then(res => res.json())
+            .then(res => dispatch(handleRepos(res)))
+            .catch(err => err)
+    }
+}
+
 export const changeUserFeedback = (feedback) => {
 
     return dispatch => {
-        const url = "https://api.github.com/user?access_token=dd356c3725013f73396189e0780d9228ee2b5241";
+        
         const obj = {
             method: 'PATCH',
             body: JSON.stringify({

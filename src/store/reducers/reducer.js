@@ -1,5 +1,6 @@
 const initialState = {
     info: null,
+    repos: null,
     changeName: false,
     changeLocation: false,
     changeBlog: false,
@@ -67,7 +68,11 @@ const reducer = (state = initialState, action) => {
                     ...state.info,
                     [action.feedType]: action.value
                 }
-
+            }
+        case 'HANDLE_REPOS':
+            return {
+                ...state,
+                repos: action.repos
             }
         default:
             return state;

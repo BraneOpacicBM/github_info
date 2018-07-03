@@ -1,0 +1,38 @@
+.Repos {
+
+}
+
+.SearchBar {
+    margin: 20px;
+    padding: 20px;
+}
+
+.SearchBar input {
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(76, 169, 207, 0.9);
+    width: 70%;
+}
+
+.SearchBar input:hover,
+.SearchBar input:active {
+    outline: none;
+    border: 2px solid rgba(76, 169, 207, 0.9);
+    
+}
+
+
+.ReposWrapper {
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+.ReposList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
