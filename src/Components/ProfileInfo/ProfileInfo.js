@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import css from './ProfileInfo.css';
 import InfoRow from '../InfoRow/InfoRow';
 
@@ -14,6 +15,10 @@ const ProfileInfo = (props) => {
         <div className={css.ProfileInfo}>
             <div className={css.HeadingHolder}>
                 <h2 className={css.HeadingText}>GitHub info</h2>
+                <div className={css.NavBar}>
+                    <NavLink to="/" exact>Home</NavLink>
+                    <NavLink to="/repos" exact>Repos</NavLink>
+                </div>
             </div>
             <div className={css.imgHolder}>
                 <div className={css.GitHubImage}>
