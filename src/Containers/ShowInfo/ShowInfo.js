@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getGitHubInfo } from "../../store/actions/actions";
+import { getGitHubInfo, url } from "../../store/actions/actions";
 import ProfileInfo from "../../Components/ProfileInfo/ProfileInfo";
 import Spinner from "../../Components/Spinner/Spinner";
 
@@ -11,8 +11,6 @@ class ShowInfo extends Component {
   }
 
   componentWillMount() {
-    const url =
-      "https://api.github.com/user?access_token=3ae2c95ac1e6bb66a7f6dbc5130e29286edb9027";
     this.props.getGitHubInfo(url);
   }
 
