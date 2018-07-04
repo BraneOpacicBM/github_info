@@ -10,45 +10,39 @@ class InfoRow extends Component {
     }
 
     inputValueHandler = (e, type) => {
-        if(e.key === "Enter") {
-            if(e.target.value.trim() !== "") {
+        if (e.key === "Enter") {
+            if (e.target.value.trim() !== "") {
                 this.props.changeUserFeedback(e.target.value, type);
                 this.props.closeUserFeedback();
             }
         }
     }
 
+    getHtmlBlock = (cssClass, value) => {
+        return <div className={cssClass}>
+            <span className={css.InfoText}>{value}</span>
+            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
+        </div>;
+    }
+
     render() {
-        console.log("INFO")
-        console.log(this.props.info)
-        let nameGroup = <div className={css.nameGroup}>
-            <span className={css.InfoText}>{this.props.info.name}</span>
-            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
-        </div>;
-        let blogGroup = <div className={css.blogGroup}>
-            <span className={css.InfoText}>{this.props.info.blog}</span>
-            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
-        </div>;
-        let companyGroup = <div className={css.companyGroup}>
-            <span className={css.InfoText}>{this.props.info.company}</span>
-            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
-        </div>;
-        let locationGroup = <div className={css.locationGroup}>
-            <span className={css.InfoText}>{this.props.info.location}</span>
-            <span className={css.changeText} onClick={() => this.changeValueHandler(this.props.type)}>+</span>
-        </div>;
+
+        let nameGroup = this.getHtmlBlock(css.NameGroup, this.props.info.name)
+        let blogGroup = this.getHtmlBlock(css.blogGroup, this.props.info.blog)
+        let companyGroup = this.getHtmlBlock(css.companyGroup, this.props.info.company)
+        let locationGroup = this.getHtmlBlock(css.locationGroup, this.props.info.location)
 
         if (this.props.changeName) {
-            nameGroup = <input type="text" placeholder={this.props.info.login} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)}/>;
+            nameGroup = <input type="text" placeholder={this.props.info.login} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)} />;
         }
         if (this.props.changeBlog) {
-            blogGroup = <input type="text" placeholder={this.props.info.blog} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)}/>;
+            blogGroup = <input type="text" placeholder={this.props.info.blog} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)} />;
         }
         if (this.props.changeCompany) {
-            companyGroup = <input type="text" placeholder={this.props.info.company} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)}/>;
+            companyGroup = <input type="text" placeholder={this.props.info.company} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)} />;
         }
         if (this.props.changeLocation) {
-            locationGroup = <input type="text" placeholder={this.props.info.location} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)}/>;
+            locationGroup = <input type="text" placeholder={this.props.info.location} onKeyDown={(e) => this.inputValueHandler(e, this.props.type)} />;
         }
 
         switch (this.props.type) {
@@ -101,7 +95,7 @@ const mapDispatchToProps = dispatch => {
     return {
         getUserFeedback: (type) => dispatch(getUserFeedback({ type: type })),
         closeUserFeedback: () => dispatch(closeUserFeedback()),
-        changeUserFeedback: (value, type) => dispatch(changeUserFeedback({value: value, type: type}))
+        changeUserFeedback: (value, type) => dispatch(changeUserFeedback({ value: value, type: type }))
     }
 }
 

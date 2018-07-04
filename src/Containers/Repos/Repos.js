@@ -33,7 +33,6 @@ class Repos extends Component {
 
 
     filterReposHandler = (e) => {
-
         if (e.key === 'Enter') {
             if (e.target.value.trim() !== "") {
                 const searchedValue = e.target.value.trim();
@@ -50,17 +49,13 @@ class Repos extends Component {
                         searchFail: false
                     })
                 }
-
             }
-
         }
-
     }
 
     render() {
         if (this.state.repoHolder) {
             let repoItems = null;
-            console.log(this.state.repoDisplay)
             if (this.state.searchFail) {
                 repoItems = <h2>Sorry, nothing found</h2>;
             } else if (!this.state.searchFail || !this.state.touched) {
@@ -68,8 +63,6 @@ class Repos extends Component {
                     return <RepoItem key={item.id} name={item.name} description={item.description} />
                 })
             }
-
-
             return (
                 <div className={css.Repos}>
                     <div className={css.SearchBar}>

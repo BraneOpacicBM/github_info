@@ -1,5 +1,7 @@
-const url = "https://api.github.com/user?access_token=dd356c3725013f73396189e0780d9228ee2b5241";
+const url = "https://api.github.com/user?access_token=3ae2c95ac1e6bb66a7f6dbc5130e29286edb9027";
 const reposUrl = "https://api.github.com/users/BraneOpacic/repos";
+
+
 const setGitHubInfo = (info) => {
     return {
         type: 'SET_GITHUB_INFO',
@@ -46,7 +48,7 @@ export const getGitRepos = () => {
 export const changeUserFeedback = (feedback) => {
 
     return dispatch => {
-        
+
         const obj = {
             method: 'PATCH',
             body: JSON.stringify({
@@ -61,7 +63,7 @@ export const changeUserFeedback = (feedback) => {
                 const feedbackValue = resJson[feedback.type];
                 dispatch(updateStateWithFeedback(feedbackType, feedbackValue))
             })
-            
+
 
     }
 }

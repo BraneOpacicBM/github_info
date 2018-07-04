@@ -5,30 +5,29 @@ import ProfileInfo from "../../Components/ProfileInfo/ProfileInfo";
 import Spinner from "../../Components/Spinner/Spinner";
 
 class ShowInfo extends Component {
-   
-state = {
+
+  state = {
     githubUser: null
-}
+  }
 
   componentWillMount() {
     const url =
-      "https://api.github.com/user?access_token=dd356c3725013f73396189e0780d9228ee2b5241";
+      "https://api.github.com/user?access_token=3ae2c95ac1e6bb66a7f6dbc5130e29286edb9027";
     this.props.getGitHubInfo(url);
   }
 
   componentWillReceiveProps(nextProps) {
-      this.setState({
-          githubUser: nextProps
-      })
+    this.setState({
+      githubUser: nextProps
+    })
   }
 
   render() {
-    if(this.state.githubUser) {
-        const githubUser = this.state.githubUser;
-        console.log(githubUser)
-        return <ProfileInfo info={githubUser.info} />
+    if (this.state.githubUser) {
+      const githubUser = this.state.githubUser;
+      return <ProfileInfo info={githubUser.info} />
     } else {
-        return <Spinner />;
+      return <Spinner />;
     }
   }
 }

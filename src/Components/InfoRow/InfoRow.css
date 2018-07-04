@@ -68,22 +68,18 @@
         font-size: 13px;
         letter-spacing: 0px;
     }
-
     .InfoRow .InfoLabel {
         font-size: 13px;
     }
 }
 
 @media screen and (max-width: 459px) {
-    
     .InfoRow {
         flex-direction: column;
     }
-
     .InfoRow .InfoText {
         font-size: 15px;
     }
-
     .InfoRow .InfoLabel {
         margin-bottom: 15px;
     }
