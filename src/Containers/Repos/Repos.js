@@ -8,11 +8,14 @@ import RepoItem from '../../Components/RepoItem/RepoItem';
 class Repos extends Component {
 
     state = {
-        repoHolder: 1
+        repoHolder: [],
+        repoDisplay: [],
+        searchFail: false,
+        touched: false
     }
 
     componentWillMount() {
-        // this.props.getGitRepos();
+        this.props.getGitRepos();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -21,19 +24,60 @@ class Repos extends Component {
         })
     }
 
+    findMatches = (wordToMatch, repos) => {
+        return repos.filter(repo => {
+            const regex = new RegExp(wordToMatch, 'gi');
+            return repo.name.match(regex);
+        })
+    }
+
+
+    filterReposHandler = (e) => {
+
+        if (e.key === 'Enter') {
+            if (e.target.value.trim() !== "") {
+                const searchedValue = e.target.value.trim();
+                const searchableState = this.state.repoHolder;
+                let filteredRepos = this.findMatches(searchedValue, searchableState);
+                if (filteredRepos.length === 0) {
+                    this.setState({
+                        searchFail: true,
+                        touched: true
+                    })
+                } else {
+                    this.setState({
+                        repoDisplay: filteredRepos,
+                        searchFail: false
+                    })
+                }
+
+            }
+
+        }
+
+    }
+
     render() {
-        if(this.state.repoHolder) {
-            console.log(this.state.repoHolder)
+        if (this.state.repoHolder) {
+            let repoItems = null;
+            console.log(this.state.repoDisplay)
+            if (this.state.searchFail) {
+                repoItems = <h2>Sorry, nothing found</h2>;
+            } else if (!this.state.searchFail || !this.state.touched) {
+                repoItems = this.state.repoDisplay.map(item => {
+                    return <RepoItem key={item.id} name={item.name} description={item.description} />
+                })
+            }
+
+
             return (
                 <div className={css.Repos}>
                     <div className={css.SearchBar}>
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" placeholder="Search" onKeyDown={(e) => this.filterReposHandler(e)} />
                     </div>
                     <div className={css.ReposWrapper}>
                         <div className={css.ReposList}>
-                            <RepoItem number="1" name="Branes git" description="Some desc here" />
-                            <RepoItem number="1" name="Branes git" description="Some desc here" />
-                            <RepoItem number="1" name="Branes git" description="Some desc here" />
+                            {repoItems}
                         </div>
                     </div>
                 </div>
@@ -41,20 +85,20 @@ class Repos extends Component {
         } else {
             return <Spinner />;
         }
-        
+
     }
 }
 
 const mapStateToProps = state => {
     return {
-      repos: state.repos
+        repos: state.repos
     };
-  };
-  
-  const mapDispatchToProps = dispatch => {
+};
+
+const mapDispatchToProps = dispatch => {
     return {
         getGitRepos: () => dispatch(getGitRepos())
     };
-  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Repos);

@@ -1,16 +1,14 @@
 .RepoItem {
     text-decoration: none;
     list-style: none;
-    border: 2px solid #3498db;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     margin: 20px 10px;
     border-radius: 10px;
-    background: rgba(76, 169, 207, 0.6);
-    max-width: 800px;
-    min-width: 200px;
+    background: rgba(76, 169, 207, 0.2);
+    width: 33%;
+    min-height: 150px;
     padding: 20px;
     text-align: center;
 }
@@ -25,7 +23,6 @@
     flex-direction: column;
 }
 
-
 span.NumberValue,
 span.RepoNameTag {
     background: #3498db;
@@ -39,15 +36,32 @@ span.RepoNameTag {
     border-radius: 28px;
     color: #ffffff;
     font-size: 14px;
-    padding: 5px 10px;
+    padding: 2px 4px;
     text-decoration: none;
     margin: 10px;
+    display: inline-block;
+    width: 40px;
 }
 
 span.RepoNameTag {
-   font-size: 13px;
+    font-size: 13px;
+    margin: 10px 0;
 }
 
-span.RepoNameValue {
-    font-size: 14px;
+.repoNameValue {
+    font-size: 11px;
+    text-align: left;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.repoHeading {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 549px) {
+    .RepoItem {
+        width: 60%;
+    }
 }

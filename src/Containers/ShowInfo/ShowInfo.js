@@ -25,7 +25,7 @@ state = {
   render() {
     if(this.state.githubUser) {
         const githubUser = this.state.githubUser;
-        console.log(githubUser.info)
+        console.log(githubUser)
         return <ProfileInfo info={githubUser.info} />
     } else {
         return <Spinner />;
