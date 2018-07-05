@@ -1,5 +1,7 @@
-export const url = "https://api.github.com/user?access_token=ad75096efa88a347291611f1b903e27b8b0ff47b";
-const reposUrl = "https://api.github.com/users/BraneOpacic/repos";
+import token from '../../assets/Token';
+
+export const url = "https://api.github.com/user?access_token=" + token;
+const reposUrl = "https://api.github.com/users/BraneOpacicBM/repos";
 
 
 const setGitHubInfo = (info) => {
